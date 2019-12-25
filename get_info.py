@@ -73,14 +73,15 @@ def get_player(player):
     return OsuProfile(player)
 
 
-def get_players(players):
+def get_players(profile_ids):
     print("Proceeding to retrieve data")
     osu_profiles = {}
     progress = 0.0
     sys.stdout.write(f"\n{progress}%")
-    for username in players:
-        osu_profiles[username] = get_player(username)
-        progress += 1 / len(players) * 100
+    for profile_id in profile_ids:
+        player = get_player(profile_id)
+        osu_profiles[player.get_name()] = player
+        progress += 1 / len(profile_ids) * 100
         formatted_progress = format(progress, ".2f")
         sys.stdout.write(f"\r{formatted_progress}%")
 
@@ -181,7 +182,7 @@ def run_scraper():
         ["y", "n"])
     save_stats = two_option_input(
         "Would you like to save the stats? (y/n)",
-         ["y", "n"])
+        ["y", "n"])
 
     if save_stats:
         print_players(profiles, print_stats, write_json, save_stats,

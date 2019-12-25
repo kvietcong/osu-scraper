@@ -89,6 +89,10 @@
     </ignored-roots>
   </component>
   <component name="WindowStateProjectService">
+    <state x="361" y="90" key="#Notifications" timestamp="1577248903581">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state x="361" y="90" key="#Notifications/0.0.1536.864@0.0.1536.864" timestamp="1577248903581" />
     <state x="0" y="184" key="#xdebugger.XInspectDialog" timestamp="1577107995790">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
@@ -153,11 +157,11 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="490" y="173" width="540" height="524" key="StructurePopup/0.0.1536.864@0.0.1536.864" timestamp="1577066751271" />
-    <state x="470" y="255" key="com.intellij.ide.util.TipDialog" timestamp="1577243221043">
+    <state x="470" y="255" key="com.intellij.ide.util.TipDialog" timestamp="1577248318708">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="470" y="255" key="com.intellij.ide.util.TipDialog/0.0.1536.864/1920.0.1920.1080@0.0.1536.864" timestamp="1576600334399" />
-    <state x="470" y="255" key="com.intellij.ide.util.TipDialog/0.0.1536.864@0.0.1536.864" timestamp="1577243221043" />
+    <state x="470" y="255" key="com.intellij.ide.util.TipDialog/0.0.1536.864@0.0.1536.864" timestamp="1577248318708" />
     <state x="578" y="348" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1577241912389">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
