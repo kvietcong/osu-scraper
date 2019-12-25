@@ -9,7 +9,8 @@ class OsuProfile:
             self.profile_id = profile_id
             response = requests.get("https://osu.ppy.sh/u/" + self.profile_id)
             web_page_soup = BeautifulSoup(response.text, "html.parser")
-            self.profile_json = json.loads(web_page_soup.find(id="json-user").getText())
+            self.profile_json = json.loads(web_page_soup.find(id="json-user")
+                                           .getText())
         elif type(profile_id) == json:
             self.profile_json = profile_id
             self.profile_id = self.get_name()

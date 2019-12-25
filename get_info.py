@@ -99,12 +99,11 @@ def print_players(players, print_stats, write_json=False, save_stats=False,
             else:
                 result[username] = profile.profile_json
     elif type(players) == list:
-        for index in range(len(players)):
+        for idx in range(len(players)):
             if not write_json:
-                result += f"\n{players[index].get_summary()}\n"
+                result += f"\n{players[idx].get_summary()}\n"
             else:
-                result[players[index].get_name(),
-                       players[index].profile_json]
+                result[players[idx].get_name()] = players[idx].profile_json
     else:
         if not write_json:
             result += players.get_summary()
@@ -135,13 +134,15 @@ def get_file_path():
     return filedialog.askdirectory()
 
 
-def two_option_input(prompt, choices):
+def bool_two_option_input(prompt, choices):
+    print(f"{prompt}")
     while True:
-        user_input = input(f"{prompt}\n")
+        user_input = input()
         if user_input == choices[0]:
             return True
         elif user_input == choices[1]:
             return False
+        print("Didn't Quite Understand that :(")
 
 
 def is_integer(string):
@@ -174,13 +175,13 @@ def run_scraper():
             names[index] = names[index].strip()
         profiles = get_players(names)
 
-    write_json = two_option_input(
+    write_json = bool_two_option_input(
         "Would you like a summary or a JSON? (s/j)",
         ["f", "s"])
-    print_stats = two_option_input(
+    print_stats = bool_two_option_input(
         "Would you like to print the stats? (y/n)",
         ["y", "n"])
-    save_stats = two_option_input(
+    save_stats = bool_two_option_input(
         "Would you like to save the stats? (y/n)",
         ["y", "n"])
 
