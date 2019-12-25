@@ -16,7 +16,7 @@ All you need to run this is PyCharm community edition with all its prerequisites
 
 ## Authors
 
-* **KV Le** - *Main Author* - No website 😥 (Coming soonish?)
+* **Vel0ciTy** - *Main Author* - No website 😥 (Coming soonish?)
 
 ## Acknowledgments
 
