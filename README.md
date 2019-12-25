@@ -4,6 +4,11 @@ Simple web scraper for osu! profiles. This project is my first attempt making so
 ## Getting Started
 All you need to run this is PyCharm community edition with all its prerequisites
 
+## Future Goals
+* Implement multithreading/processing to speed up the data fetching. (Hilariously slow rn)
+* Create a GUI that can make the experience a lot more intuitive
+* Learn how to make this project an executable
+
 ## Built With
 
 * [PyCharm](https://www.jetbrains.com/pycharm/) - IDE used
