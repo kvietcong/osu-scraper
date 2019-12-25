@@ -2,7 +2,7 @@
 Simple web scraper for osu! profiles. This project is my first attempt making something with Python and first attempt making a web scraper. My goals for this project were to learn Python syntax, features, and try something that dealt with the internet. I think this is a semi-decent attempt lol.
 
 ## Getting Started
-All you need to run this is PyCharm community edition with all its prereqs
+All you need to run this is PyCharm community edition with all its prerequisites
 
 ## Built With
 
