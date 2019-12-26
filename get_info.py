@@ -9,6 +9,13 @@ import sys
 
 
 def get_top_stats(page_stop=1):
+
+    # pre: The given page must be less than 200 and greater than
+    # 1 or else another page will be calculated.
+    #
+    # post: Returns a dictionary of the osu profiles on each page
+    # (that the user specified) listed by username.
+
     if page_stop > 200:
         print("Cannot calculate past the 200th page")
         print("Proceeding to calculate up to the 200th page")
@@ -46,6 +53,13 @@ def get_top_stats(page_stop=1):
 
 
 def get_rank_player(rank):
+
+    # pre: The given rank must be below 10001 and above 0 or else
+    # None is returned.
+    #
+    # post: Returns the osu profile of the given rank based on the
+    # leader-board.
+
     if rank > 10000:
         print("Can't find ranks above 10,000")
         return None
@@ -70,10 +84,23 @@ def get_rank_player(rank):
 
 
 def get_player(player):
+
+    # pre: The string should be a username or player id with the identifier
+    # being case insensitive.
+    #
+    # post: Returns osu profile of the player.
+
     return OsuProfile(player)
 
 
 def get_players(profile_ids):
+
+    # pre: The list should have usernames or player ids with the identifier
+    # being case insensitive.
+    #
+    # post: Returns a dictionary of the osu profiles of each user given
+    # listed by username.
+
     print("Proceeding to retrieve data")
     osu_profiles = {}
     progress = 0.0
@@ -89,8 +116,15 @@ def get_players(profile_ids):
     return osu_profiles
 
 
-def print_players(players, print_stats, write_json=False, save_stats=False,
-                  file_name="default", file_directory=""):
+def record_stats(players, print_stats, write_json=False, save_stats=False,
+                 file_name="default", file_directory=""):
+
+    # pre: The players must be of string type and the print_stats must be a
+    # boolean.
+    #
+    # post: Records the stats of the given players into the console and/or a
+    # file. Depending on the user the file is a .txt or a .json.
+
     result = {} if write_json else ""
     if type(players) == dict:
         for username, profile in players.items():
@@ -126,6 +160,9 @@ def print_players(players, print_stats, write_json=False, save_stats=False,
 
 
 def get_file_path():
+
+    # Uses Tkinter GUI to ask for a file destination.
+
     print("\nPick a File Destination")
     print("Close the window to save it in the project path")
     root = tkinter.Tk()
@@ -135,6 +172,13 @@ def get_file_path():
 
 
 def bool_two_option_input(prompt, choices):
+
+    # pre: The prompt must be a string and there must only be
+    # two choices in the choices input. The first choice corresponds
+    # with True while the second, false.
+    #
+    # post: Returns a boolean based on the player's input.
+
     print(f"{prompt}")
     while True:
         user_input = input()
@@ -146,6 +190,9 @@ def bool_two_option_input(prompt, choices):
 
 
 def is_integer(string):
+
+    # Checks if the given String is an integer.
+
     try:
         int(string)
         return True
@@ -154,6 +201,10 @@ def is_integer(string):
 
 
 def run_scraper():
+
+    # Runs a console based script that allows for a client to scrape
+    # osu profile information.
+
     print("Welcome to Le osu! Data Scraper")
     input_players = input(
         "Please list the players you would like to get data of."
@@ -186,8 +237,8 @@ def run_scraper():
         ["y", "n"])
 
     if save_stats:
-        print_players(profiles, print_stats, write_json, save_stats,
-                      input("What would you like the file to be named?\n"),
-                      get_file_path())
+        record_stats(profiles, print_stats, write_json, save_stats,
+                     input("What would you like the file to be named?\n"),
+                     get_file_path())
     else:
-        print_players(profiles, print_stats, write_json)
+        record_stats(profiles, print_stats, write_json)
