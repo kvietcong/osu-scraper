@@ -7,6 +7,7 @@ All you need to run this is PyCharm community edition with all its prerequisites
 ## Future Goals
 * Implement multithreading/processing to speed up the data fetching. (Hilariously slow rn)
 * Create a GUI that can make the experience a lot more intuitive
+* Refactor the code so it's not disgusting
 * Learn how to make this project an executable
 
 ## Built With
