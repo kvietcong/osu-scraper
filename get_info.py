@@ -1,5 +1,5 @@
 import json
-import tkinter
+from tkinter import *
 from tkinter import filedialog
 import os.path
 from osu_profile import OsuProfile
@@ -126,23 +126,19 @@ def record_stats(players, print_stats, write_json=False, save_stats=False,
     # file. Depending on the user the file is a .txt or a .json.
 
     result = {} if write_json else ""
-    if type(players) == dict:
-        for username, profile in players.items():
+    if type(players) == str:
+        if not write_json:
+            result += f"\n{players.get_summary()}\n"
+        else:
+            result = players.profile_json
+    else:
+        players = players.items() if type(players) == dict \
+            else enumerate(players)
+        for key, profile in players:
             if not write_json:
                 result += f"\n{profile.get_summary()}\n"
             else:
-                result[username] = profile.profile_json
-    elif type(players) == list:
-        for idx in range(len(players)):
-            if not write_json:
-                result += f"\n{players[idx].get_summary()}\n"
-            else:
-                result[players[idx].get_name()] = players[idx].profile_json
-    else:
-        if not write_json:
-            result += players.get_summary()
-        else:
-            result = players.profile_json
+                result[profile.get_name()] = profile.profile_json
 
     if print_stats:
         if write_json:
@@ -165,7 +161,7 @@ def get_file_path():
 
     print("\nPick a File Destination")
     print("Close the window to save it in the project path")
-    root = tkinter.Tk()
+    root = Tk()
     root.withdraw()
     root.wm_attributes('-topmost', 1)
     return filedialog.askdirectory()
@@ -200,7 +196,7 @@ def is_integer(string):
         return False
 
 
-def run_scraper():
+def run_scraper_text():
 
     # Runs a console based script that allows for a client to scrape
     # osu profile information.
@@ -242,3 +238,9 @@ def run_scraper():
                      get_file_path())
     else:
         record_stats(profiles, print_stats, write_json)
+
+
+def run_scraper_gui():
+    app = Tk()
+    app.title("osu! Scraper")
+    app.mainloop()
