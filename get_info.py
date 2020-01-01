@@ -1,12 +1,12 @@
 import json
 from tkinter import *
 from tkinter import filedialog
+from tkinter import ttk
 import os.path
 from osu_profile import OsuProfile
 from bs4 import BeautifulSoup
 import requests
 import sys
-
 
 def get_top_stats(page_stop=1):
 
@@ -240,7 +240,67 @@ def run_scraper_text():
         record_stats(profiles, print_stats, write_json)
 
 
+# BELOW IS BROKEN CODE, I'M CURRENTLY TRYING TO LEARN
+
+file_pathway = ""
+
+
 def run_scraper_gui():
     app = Tk()
+    app.geometry("600x300")
     app.title("osu! Scraper")
+
+    intro = Label(app, text="Welcome to Le osu! Data Scraper!")
+    intro.place(relx=.5, rely=.1, anchor="center")
+
+    type_label = Label(app, text="What type would you like the file to be printed in?")
+    type_label.place(relx=.4, rely=.2, anchor="center")
+    data_type_combobox = ttk.Combobox(app)
+    data_type_combobox["values"] = ["Summary", "JSON"]
+    data_type_combobox.current(0)
+    data_type_combobox.place(relx=.75, rely=.2, anchor="center")
+
+    print_checkbox_state = BooleanVar()
+    print_checkbox_state.set(True)
+    print_checkbox = Checkbutton(app, text="Print Data?", var=print_checkbox_state)
+    print_checkbox.place(relx=.125, rely=.3, anchor="center")
+
+    save_checkbox_state = BooleanVar()
+    save_checkbox_state.set(False)
+    save_checkbox = Checkbutton(app, text="Save Data?", var=save_checkbox_state)
+    save_checkbox.place(relx=.325, rely=.3, anchor="center")
+
+    file_name_label = Label(app, text="File Name")
+    file_name_label.place(relx=.65, rely=.3, anchor="center")
+    file_name_input = Entry(app, width=25)
+    file_name_input.place(relx=.835, rely=.3, anchor="center")
+
+    def file_path():
+        global file_pathway
+        file_pathway = get_file_path()
+
+    file_path_button = Button(app, text="File Path", command=file_path)
+    file_path_button.place(relx=.5, rely=.3, anchor="center")
+
+    players_label = Label(app, text="Names (comma separated)")
+    players_label.place(relx=.15, rely=.4, anchor="center")
+    players_input = Entry(app, width=65)
+    players_input.place(relx=.625, rely=.4, anchor="center")
+
+    def process():
+        write_json = True if data_type_combobox.get() == "JSON" else False
+        extension = ".json" if write_json else ".txt"
+        names = players_input.get().split(",")
+        for index in range(len(names)):
+            names[index] = names[index].strip()
+        players = get_players(names)
+        record_stats(players,
+                     print_checkbox_state.get(),
+                     write_json=write_json,
+                     save_stats=save_checkbox_state.get(),
+                     file_name=file_name_input.get(),
+                     file_directory=f"{file_pathway}{extension}")
+
+    button = Button(app, text="Fetch Data", command=process)
+    button.place(relx=.5, rely=.9, anchor="center")
     app.mainloop()
