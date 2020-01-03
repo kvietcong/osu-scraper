@@ -8,6 +8,7 @@ from bs4 import BeautifulSoup
 import requests
 import sys
 
+
 def get_top_stats(page_stop=1):
 
     # pre: The given page must be less than 200 and greater than
@@ -128,7 +129,7 @@ def record_stats(players, print_stats, write_json=False, save_stats=False,
     result = {} if write_json else ""
     if type(players) == str:
         if not write_json:
-            result += f"\n{players.get_summary()}\n"
+            result = f"\n{players.get_summary()}\n"
         else:
             result = players.profile_json
     else:
@@ -224,7 +225,7 @@ def run_scraper_text():
 
     write_json = bool_two_option_input(
         "Would you like a summary or a JSON? (s/j)",
-        ["f", "s"])
+        ["j", "s"])
     print_stats = bool_two_option_input(
         "Would you like to print the stats? (y/n)",
         ["y", "n"])
@@ -240,7 +241,7 @@ def run_scraper_text():
         record_stats(profiles, print_stats, write_json)
 
 
-# BELOW IS BROKEN CODE, I'M CURRENTLY TRYING TO LEARN
+# BELOW IS BROKEN CODE, I'M CURRENTLY TRYING TO LEARN TKINTER
 
 file_pathway = ""
 
