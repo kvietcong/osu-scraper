@@ -2,7 +2,7 @@
 Simple web scraper for osu! profiles. This project is my first attempt making something with Python and first attempt making a web scraper. My goals for this project were to learn Python syntax, features, and try something that dealt with the internet. I think this is a semi-decent attempt lol.
 
 ## Getting Started
-All you need python and the BeautifulSoup library. (pip install bs4)
+You must have a python environment with [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/) and the requests modules.
 
 ## Future Goals
 * Implement multithreading/processing to speed up the data fetching. (Hilariously slow rn)
