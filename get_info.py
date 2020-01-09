@@ -53,7 +53,7 @@ def get_top_stats(page_stop=1):
     return osu_profiles
 
 
-def get_top_stats_threaded(page_stop=1, max_threads=4):
+def get_top_stats_threaded(page_stop=1, max_threads=2):
 
     # pre: The given page must be less than 200 and greater than
     # 1 or else another page will be calculated. This function is
