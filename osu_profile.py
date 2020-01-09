@@ -76,14 +76,23 @@ Playcount: {self.get_play_count()}"""
 
     def __str__(self):
 
-        # Returns the profile's full information
+        # Returns the profile's full information with a JSON-esque format
+        # made to be readable
 
         return json_to_string(self.profile_json)
+
+    def __repr__(self):
+
+        # Returns the profile's full information in JSON format
+
+        return self.profile_json
 
     @staticmethod
     def json_to_string(json_info):
 
         # Converts the profile's JSON into a string
+        # Note: I know this is a redundant function but I wanted to implement
+        # my own toString method with recursion
 
         tab = " " * 3
         string = ""
@@ -107,6 +116,15 @@ Playcount: {self.get_play_count()}"""
             string += f"{json_info}"
         return string.replace("_", " ")
 
+    def __add__(self, other):
+        if isinstance(other, OsuProfile):
+            return self.get_pp() + other.get_pp()
+        return NotImplemented
+
+    def __sub__(self, other):
+        if isinstance(other, OsuProfile):
+            return self.get_pp() - other.get_pp()
+        return NotImplemented
 
 # All the method's below do the same thing as the methods in the
 # OsuProfile class but they are calculated independently
