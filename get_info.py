@@ -265,7 +265,7 @@ def run_scraper_text():
                 page = int(user_input)
                 break
             print("Didn't Quite Understand that :(")
-        profiles = get_top_stats(page)
+        profiles = get_top_stats_threaded(page)
     else:
         names = input_players.split(",")
         for index in range(len(names)):
