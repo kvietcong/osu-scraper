@@ -6,7 +6,7 @@ import os.path
 from osu_profile import OsuProfile
 from bs4 import BeautifulSoup
 import requests
-import sys
+import concurrent.futures
 
 
 def get_top_stats(page_stop=1):
@@ -53,6 +53,55 @@ def get_top_stats(page_stop=1):
     return osu_profiles
 
 
+def get_top_stats_threaded(page_stop=1, max_threads=4):
+
+    # pre: The given page must be less than 200 and greater than
+    # 1 or else another page will be calculated. This function is
+    # able to use multithreading to make the task faster. However,
+    # be careful of request timeouts as osu blocks out this program
+    # if to many requests are made at the same time. (429 error)
+    #
+    # post: Returns a dictionary of the osu profiles on each page
+    # (that the user specified) listed by username.
+
+    if page_stop > 200:
+        print("Cannot calculate past the 200th page")
+        print("Proceeding to calculate up to the 200th page")
+        page_stop = 200
+    if page_stop < 1:
+        print("Cannot calculate before the 1st page")
+        print("Proceeding to calculate the 1st page")
+        page_stop = 1
+
+    print("Proceeding to retrieve data")
+    osu_ranking_pages = {}
+    osu_profiles = {}
+
+    for page_number in range(1, page_stop + 1):
+        url = f"https://osu.ppy.sh/rankings/osu/performance?page=" \
+              f"{page_number}#scores"
+        response = requests.get(url)
+        osu_ranking_pages[page_number] = \
+            BeautifulSoup(response.text, "html.parser")
+
+    for ranking_page in osu_ranking_pages:
+        users = osu_ranking_pages[ranking_page].\
+            find_all(class_="ranking-page-table__user-link-text js-usercard")
+
+        users = map(get_username, users)
+        with concurrent.futures.ThreadPoolExecutor(max_workers=max_threads) as executor:
+            profiles = executor.map(get_player, users)
+
+        for profile in profiles:
+            osu_profiles[profile.get_name()] = profile
+
+    return osu_profiles
+
+
+def get_username(user):
+    return user.text.strip()
+
+
 def get_rank_player(rank):
 
     # pre: The given rank must be below 10001 and above 0 or else
@@ -90,7 +139,7 @@ def get_player(player):
     # being case insensitive.
     #
     # post: Returns osu profile of the player.
-
+    print(f"Getting {player}")
     return OsuProfile(player)
 
 
