@@ -17,7 +17,7 @@ You must have a python environment with [BeautifulSoup](https://www.crummy.com/s
 
 ## Authors
 
-* **Vel0ciTy** - *Main Author* - [No live website](https://github.com/FGVel0ciTy/Le-Website "WIP Website") 😥 (Coming soonish?)
+* **Vel0ciTy** - *Main Author* - [Finally got one!](lecongkhoiviet.netlify.com) 😁
 
 ## Acknowledgments
 
