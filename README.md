@@ -5,8 +5,8 @@ Simple web scraper for osu! profiles. This project is my first attempt making so
 You must have a python environment with [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/) and the requests modules.
 
 ## Future Goals
-* Implement multithreading/processing to speed up the data fetching. (Hilariously slow rn)
-* Create a GUI that can make the experience a lot more intuitive
+* Implement multithreading/processing to speed up the data fetching. (Implemented BUT osu doesn't allow too many requests at one time 😥)
+* Create a GUI that can make the experience a lot more intuitive (Partially In)
 * Refactor the code so it's not disgusting
 * Learn how to make this project an executable
 
