@@ -1,3 +1,7 @@
+> Note: I have realized that the osu! API is probably the best way to actually retrieve
+information like this. This was a good project to learn the basics of Python and web
+scraping though
+
 ## osu-scraper
 Simple web scraper for osu! profiles. This project is my first attempt making something with Python and first attempt making a web scraper. My goals for this project were to learn Python syntax, features, and try something that dealt with the internet. I think this is a semi-decent attempt lol.
 
@@ -17,7 +21,7 @@ You must have a python environment with [BeautifulSoup](https://www.crummy.com/s
 
 ## Authors
 
-* **Vel0ciTy** - *Main Author* - [Finally got one!](https://lecongkhoiviet.netlify.com/) 😁
+* **Vel0ciTy** - *Main Author*
 
 ## Acknowledgments
 
